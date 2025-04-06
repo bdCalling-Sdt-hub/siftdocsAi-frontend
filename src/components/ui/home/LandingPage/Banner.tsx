@@ -18,7 +18,7 @@ const Banner = () => {
            <div className=" text-[#121212] flex flex-col items-center justify-center"> 
   <p className={` lg:text-[64px] text-[30px] font-bold text-center ${roboto.className}`}>siftdocs.ai </p>  
   <p className={`lg:text-[32px] text-[24px] font-normal text-center  mt-4 ${roboto.className}`}> Best document processing platform </p>  
-  <div className=" my-10"  onClick={() => router.push("/dashboard")}> 
+  <div className=" my-10"  onClick={() => router.push("/prompt")}> 
     <GradientBtn className=" px-[32px] py-[18px] "> Get Started  </GradientBtn>
   </div> 
 

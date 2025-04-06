@@ -30,11 +30,10 @@ const HomeNavbar = () => {
     // };
 
     const navOptions = [
-        { label: "Home", path: "/" },
-        { label: "Business listing", path: "/business-listing" },
-        { label: "About", path: "/about" },
-        { label: "Blogs", path: "/blogs" },
-        { label: "Contact Us", path: "/contact" },
+        { label: "Dashboard", path: "/dashboard" },
+        { label: "Upload", path: "/upload" },
+        { label: "Chat", path: "/chat" },
+        { label: "Setting", path: "/setting" },
     ];
 
     const openLogin = () => {
