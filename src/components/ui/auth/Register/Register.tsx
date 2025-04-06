@@ -1,36 +1,26 @@
-"use client";
 
+
+import GradientBtn from "@/components/shared/GradientBtn";
 import TextInput from "@/components/shared/TextInput";
 import { Checkbox, ConfigProvider, Form, Input } from "antd";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+
 import React from "react";
 
-interface ValuesType {
-  name: string;
-  email: string;
-  contact: string;
-  password: string;
-  confirm_password: string;
-}
+const Register = ({ openLogin , setIsModalOpen }: { openLogin: () => void , setIsModalOpen:(open:boolean)=>void }) => {
 
-const Register: React.FC = () => {
-  const router = useRouter();
 
-  const onFinish = async (values: ValuesType) => {
-    console.log(values);
-    localStorage.setItem("userType", "register");
-    router.push(`/verify-otp?email=${values.email}`);
+  const onFinish = async () => {
+    setIsModalOpen(false)
   };
 
   return (
-    <div>
-      <div className="mb-6">
-        <h1 className="text-[25px] font-semibold mb-2">Register Now</h1>
-        <p className="text-[#11D279]">
-          To proceed with your application, we first need some information from
-          you
-        </p>
+    <div className="w-full">
+      <div className="mb-6 text-center"> 
+      <div  className="flex items-center justify-center mb-4"> 
+          <img src="/logo.png" alt="Logo" className="h-[32px] w-auto" /> 
+          </div>
+        <h1 className="text-[25px] font-semibold mb-3 ">Register Now</h1>  
+        <p className="text-[#5C5C5C] text-center "> To proceed with your application, we first need some information from you</p>
       </div>
       <ConfigProvider
         theme={{
@@ -39,7 +29,7 @@ const Register: React.FC = () => {
           },
           components: {
             Input: {
-            //   borderColor: "#d9d9d9",  
+              //   borderColor: "#d9d9d9",  
               hoverBorderColor: "#d9d9d9",
             },
           },
@@ -48,8 +38,6 @@ const Register: React.FC = () => {
         <Form onFinish={onFinish} layout="vertical">
           <TextInput name="name" label="Full Name" />
           <TextInput name="email" label="Email" />
-          <TextInput name="contact" label="Contact Number" />
-
           <Form.Item
             name="password"
             label="Password"
@@ -59,40 +47,12 @@ const Register: React.FC = () => {
                 message: "Please enter your password!",
               },
             ]}
-            className="mb-5"
+            className="mb-4"
           >
             <Input.Password
               placeholder="Enter password"
-              className="border border-gray-300 h-[50px] bg-white rounded-lg"
-            />
-          </Form.Item>
-
-          <Form.Item
-            name="confirm_password"
-            label="Confirm Password"
-            dependencies={["password"]}
-            hasFeedback
-            rules={[
-              {
-                required: true,
-                message: "Please confirm your password!",
-              },
-              ({ getFieldValue }) => ({
-                validator(_, value) {
-                  if (!value || getFieldValue("password") === value) {
-                    return Promise.resolve();
-                  }
-                  return Promise.reject(
-                    new Error("The passwords do not match!")
-                  );
-                },
-              }),
-            ]}
-            className="mb-10"
-          >
-            <Input.Password
-              placeholder="Confirm password"
-              className="border border-gray-300 h-[50px] bg-white rounded-lg"
+              className="border border-gray-300 h-[40px] bg-white rounded-full"
+              style={{ borderRadius: "50px" }}
             />
           </Form.Item>
 
@@ -115,21 +75,16 @@ const Register: React.FC = () => {
           </Form.Item>
 
           <Form.Item>
-            <button
-              type="submit"
-              className="w-full h-[45px] text-white font-medium text-lg bg-primary rounded-lg flex items-center justify-center mt-4"
-            >
-              Sign up
-            </button>
+            <GradientBtn className="w-full h-[40px]  font-[400px] "> Sign Up</GradientBtn>
           </Form.Item>
         </Form>
       </ConfigProvider>
 
-      <div className="flex items-center justify-center gap-1 py-4">
+      <div className="flex items-center justify-center gap-1 py-0">
         <p className="text-[#636363]">Have an account?</p>
-        <Link href="/login" className="text-[#1854F9] font-semibold">
-          Log in
-        </Link>
+        <div className="text-primary font-semibold cursor-pointer" onClick={openLogin}>
+          Log In
+        </div>
       </div>
     </div>
   );

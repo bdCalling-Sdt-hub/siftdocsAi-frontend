@@ -1,11 +1,12 @@
-import type { Metadata } from "next"; 
-import { AntdRegistry } from "@ant-design/nextjs-registry"; 
+import type { Metadata } from "next";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
 import "./globals.css";
+import { Poppins } from "next/font/google";
 
-
+const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
 
 export const metadata: Metadata = {
-  title: "Tweet",
+  title: "siftdocs",
 };
 
 export default function RootLayout({
@@ -16,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`antialiased`}
+        className={`antialiased ${poppins.className} `}
       >
         <AntdRegistry>
           {children}

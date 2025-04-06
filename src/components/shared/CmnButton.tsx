@@ -1,6 +1,3 @@
-import React from 'react'; 
-import { Poppins } from 'next/font/google'; 
-const poppins = Poppins({ weight: ['400', '500', '600', '700'], subsets: ['latin'] }); 
 
 interface IButtonProps {
   name?: React.ReactNode;
@@ -9,7 +6,7 @@ interface IButtonProps {
 }
 
 const CmnButton: React.FC<IButtonProps> = ({ children, className }) => {
-    return <button type="submit" className={`   bg-primary  text-white  lg:text-[18px] text-[14px] ${poppins.className} ${className}`} >
+    return <button type="submit" className={`   bg-primary  text-[#F1F1F1] rounded-full  lg:text-[16px] text-[14px] ${className}`} >
     {children}
   </button>
 };

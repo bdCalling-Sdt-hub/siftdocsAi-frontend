@@ -1,21 +1,23 @@
-"use client"
-import { Button, Form, Input } from "antd";
-import { useRouter } from "next/navigation";
+
+import GradientBtn from "@/components/shared/GradientBtn";
+import {  Form, Input } from "antd";
 import React from "react";
 
-const ResetPassword = () => { 
-    const router = useRouter()
-
-    const onFinish = async(values:{newPassword:string , confirmPassword:string}) => { 
-      console.log(values);
-      router.push(`/login`);
+const ResetPassword = ({setIsModalOpen}:{setIsModalOpen:(open:boolean)=>void}) => { 
+    const onFinish = async() => { 
+        setIsModalOpen(false)
     }; 
 
     return (
         <div>
 
-        <div className=" mb-6">
-          <h1 className="text-[25px] font-semibold text-primary ">Reset Password</h1>
+        <div className=" mb-6  flex flex-col items-center justify-center "> 
+          <div className="flex items-center justify-center mb-6">
+            <img src="/logo.png" alt="Logo" className="h-[32px] w-auto" />
+          </div>
+          <h1 className="text-[25px] font-semibold text-[#333333] mb-2 ">Set a new password </h1> 
+          <div className="  w-[70%]  "> <p className="text-[#5C5C5C] text-center "> We sent a reset link to contact@dscode...com
+          enter 5 digit code that is mentioned in the email. </p> </div> 
         </div>
 
         <Form
@@ -48,9 +50,9 @@ const ResetPassword = () => {
                 placeholder="Enter New password"
                 style={{
                   border: "1px solid #E0E4EC",
-                  height: "52px",
+                  height: "40px",
                   background: "white",
-                  borderRadius: "8px",
+                  borderRadius: "50px",
                   outline: "none",
                 }} 
                 className="mb-6"
@@ -93,9 +95,9 @@ const ResetPassword = () => {
                 placeholder="Enter Confirm password"
                 style={{
                   border: "1px solid #E0E4EC",
-                  height: "52px",
+                  height: "40px",
                   background: "white",
-                  borderRadius: "8px",
+                  borderRadius: "50px",
                   outline: "none",
                 }} 
                 className="mb-6"
@@ -104,20 +106,7 @@ const ResetPassword = () => {
       
 
             <Form.Item style={{marginBottom: 0}}>
-            <Button
-              htmlType="submit"
-              style={{
-                width: '100%',
-                height: 45,
-                color: "white",
-                fontWeight: "400px",
-                fontSize: "18px",
-                background: "#0a2369",
-                marginTop: 20
-              }}
-            >
-             Update
-            </Button>
+            <GradientBtn className="w-full h-[40px]  font-[400px] "> Update Password </GradientBtn>
           </Form.Item>
 
 

@@ -2,3 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+.ant-modal-mask {
+    backdrop-filter: blur(2px);
+    background-color: rgba(173, 168, 168, 0.3); /* optional for slight dark effect */
+  }

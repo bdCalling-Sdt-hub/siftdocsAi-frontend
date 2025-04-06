@@ -1,67 +1,33 @@
-"use client"
-import {  Form, Input } from "antd";
-import { useRouter } from "next/navigation";
+
+import GradientBtn from "@/components/shared/GradientBtn";
+import TextInput from "@/components/shared/TextInput";
+import {  Form } from "antd";
+
 import React from "react";
 
-const ForgetPassword = () => { 
-    const router  = useRouter()
+const ForgetPassword = ({openVerifyOtp }:{openVerifyOtp:() => void}) => { 
 
-    const onFinish = async(values:{email:string}) => { 
-        localStorage.setItem("userType","forget")
-  
-          router.push(`/verify-otp?email=${values?.email}`);
-  
+    const onFinish = async() => { 
+        openVerifyOtp()
     };
   
     return (
-        <div>
+        <div className="w-full">
 
-        <div className="text-center mb-4">
-          <h1 className="text-[25px] font-semibold ">Forgot Password ?</h1>
-        
+        <div className="text-center mb-4"> 
+        <div  className="flex items-center justify-center mb-6"> 
+          <img src="/logo.png" alt="Logo" className="h-[32px] w-auto" /> 
+          </div>
+          <h1 className="text-[25px] font-semibold mb-2 ">Forgot Password ?</h1>
+          <p className="text-[#5C5C5C] text-center "> Enter your email below to reset your password</p>
         </div>
 
         <Form layout="vertical" onFinish={onFinish}>
           
-            <Form.Item
-              label={<p>Email</p>}
-              name="email"
-              id="email"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your email!",
-                },
-              ]}
-            >
-              <Input
-                placeholder="Enter your email address"
-                style={{
-                  height: 40,
-                  border: "1px solid #d9d9d9",
-                  outline: "none",
-                  boxShadow: "none"
-                }}
-              />
-            </Form.Item>
+        <TextInput name={"email"} label={"Email"} />
 
           <Form.Item>
-            <button
-             
-              type="submit"
-              style={{
-                width: '100%',
-                height: 45,
-                color: "white",
-                fontWeight: "400px",
-                fontSize: "18px",
-           
-                marginTop: 20
-              }}
-              className="flex items-center justify-center bg-primary rounded-lg"
-            >
-             Send OTP
-            </button>
+            <GradientBtn className="w-full h-[40px]  font-[400px] "> Send Code </GradientBtn>
           </Form.Item>
         </Form>
     </div>

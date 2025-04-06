@@ -7,7 +7,7 @@ const TextInput: React.FC<{ name: string; label: string }> = ({ name, label }) =
   return (
     <Form.Item
       name={name}
-      label={<p className="text-[#4E4E4E] text-[16px]">{label}</p>}
+      label={<p className="text-[#414141] text-[16px]">{label}</p>}
       rules={[
         {
           required: true,
@@ -19,12 +19,13 @@ const TextInput: React.FC<{ name: string; label: string }> = ({ name, label }) =
       <Input
         placeholder={`Enter your ${label.toLowerCase()}`}
         style={{
-            height: 48,
+            height: 40,
             border: "1px solid #d9d9d9",
             outline: "none",
             boxShadow: "none",
-            backgroundColor: "white",
-          }}
+            backgroundColor: "white", 
+            borderRadius: "50px",
+          }} 
       />
 
     </Form.Item>

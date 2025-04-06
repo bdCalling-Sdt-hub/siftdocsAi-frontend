@@ -1,29 +1,26 @@
+/* eslint-disable @next/next/no-img-element */
 "use client"
 
+import GradientBtn from "@/components/shared/GradientBtn";
 import TextInput from "@/components/shared/TextInput";
 import {  Checkbox, Form, Input } from "antd";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import React from "react";
 
-const Login = () => { 
-    const router = useRouter()
+const Login = ({ onForgotPassword , openRegister , setIsModalOpen }: { onForgotPassword: () => void , openRegister: () => void , setIsModalOpen:(open:boolean)=>void }) => { 
 
 
-    const onFinish = async(values:{email:string , password:string}) => { 
-      console.log(values);
-  
-            router.push("/")
-          
-     
+
+    const onFinish = async() => { 
+      setIsModalOpen(false)
     }; 
 
-    return (
-        <div 
-    >
-        <div className=" mb-6">
-          <h1 className="text-[25px] font-semibold mb-2">Log in to your account</h1>
-          <p className="text-[#11D279]"> Please enter your email and password to continue</p>
+    return ( 
+        <div  className="w-full">
+        <div className=" mb-6">  
+          <div  className="flex items-center justify-center mb-6"> 
+          <img src="/logo.png" alt="Logo" className="h-[32px] w-auto" /> 
+          </div>
+          <h1 className="text-[25px] font-semibold mb-2 text-center">Log in to your account</h1>
+          <p className="text-[#5C5C5C] text-center "> Please enter your email and password to continue</p>
         </div>
         <Form
           onFinish={onFinish}
@@ -34,7 +31,7 @@ const Login = () => {
 
             <Form.Item
               name="password"
-              label={<p>Password</p>}
+              label={<p className="text-[#414141] text-[16px]">Password</p>}
               rules={[
                 {
                   required: true,
@@ -49,7 +46,8 @@ const Login = () => {
                   height: 40,
                   border: "1px solid #d9d9d9",
                   outline: "none",
-                  boxShadow: "none"
+                  boxShadow: "none" , 
+                  borderRadius: "50px",
                 }}
               />
             </Form.Item>
@@ -59,30 +57,16 @@ const Login = () => {
                 <Checkbox>Remember me</Checkbox>
               </Form.Item>
 
-              <a
-                className="login-form-forgot text-primary font-semibold"
-                href="/forgot-password"
+              <p
+                className="login-form-forgot text-primary font-semibold cursor-pointer"
+                onClick={onForgotPassword}
               >
                 Forgot password
-              </a>
+              </p>
           </div>
 
-          <Form.Item style={{marginBottom: 0}}>
-            <button
-              type="submit"
-              style={{
-                width: '100%',
-                height: 45,
-                color: "white",
-                fontWeight: "400px",
-                fontSize: "18px",
-           
-                marginTop: 20
-              }}
-              className="flex items-center justify-center bg-primary rounded-lg"
-            >
-              {/* {isLoading? < Spinner/> : "Sign in"} */} Sign in
-            </button>
+          <Form.Item style={{marginTop: 24}}>
+          <GradientBtn className="w-full h-[40px]  font-[400px] " >Log In</GradientBtn>
           </Form.Item>
 
           
@@ -90,7 +74,7 @@ const Login = () => {
 
         <div className=" flex items-center justify-center gap-1 py-4">
             <p className="text-[#636363]">Don’t have any account?</p> 
-            <Link href="/register" className="text-[#1854F9] font-semibold" > Sign Up</Link>
+            <p className="text-primary font-semibold cursor-pointer" onClick={openRegister} > Sign Up</p>
         </div>
     </div>
     );
