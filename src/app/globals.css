@@ -5,4 +5,19 @@
 .ant-modal-mask {
     backdrop-filter: blur(2px);
     background-color: rgba(173, 168, 168, 0.3); /* optional for slight dark effect */
-  }
+  } 
+
+.document-upload-modal{
+  position: absolute;
+  z-index: 9999 !important;
+} 
+
+
+.custom-dropdown{
+  z-index: 99 !important;
+} 
+
+.custom-upload-dragger{
+  background: white !important; 
+
+}

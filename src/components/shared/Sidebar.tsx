@@ -1,28 +1,22 @@
 "use client"
 
-import { LuLayoutDashboard } from 'react-icons/lu';
 import Link from 'next/link';
-import { Bookmark, FilePlus2, MessageCirclePlus, MessageCircleReply } from 'lucide-react';
-import { usePathname } from 'next/navigation';
+import { Bookmark, ChevronDown, ChevronRight, FilePlus2, MessageCircleReply, PanelsTopLeft } from 'lucide-react';
+import { usePathname, useRouter } from 'next/navigation';
+import GradientMessageCirclePlus from './GradientMessageCirclePlus';
 
-const Sidebar = ({showLabels , setShowLabels}:{showLabels: boolean, setShowLabels: (showLabels: boolean) => void}) => {
+const Sidebar = ({ showLabels, setShowLabels }: { showLabels: boolean, setShowLabels: (showLabels: boolean) => void }) => {
     const pathname = usePathname();
+    const router = useRouter();
 
     const toggleLabels = () => {
         setShowLabels(!showLabels);
     };
 
+    console.log("showLabels", showLabels);
+
     const menuItems = [
-        {
-            key: "/dashboard",
-            icon: <LuLayoutDashboard style={{ height: "34px", width: "24px", color: pathname === "/dashboard" ? "#07AFF8" : "#606060" }} />,
-            label: "Dashboard"
-        },
-        {
-            key: "/new-chat",
-            icon: <MessageCirclePlus style={{ height: "34px", width: "24px", color: pathname === "/new-chat" ? "#07AFF8" : "#606060" }} />,
-            label: "New Chat"
-        },
+
         {
             key: "/my-documents",
             icon: <FilePlus2 style={{ height: "34px", width: "24px", color: pathname === "/my-documents" ? "#07AFF8" : "#606060" }} />,
@@ -41,21 +35,50 @@ const Sidebar = ({showLabels , setShowLabels}:{showLabels: boolean, setShowLabel
     ];
 
     return (
-        <div className="h-full">
-            <div className="flex flex-col h-full">
+        <div className="h-full ">
+            <div className="flex flex-col h-full ">
                 {/* Toggle button at the top */}
-                <button 
-                    onClick={toggleLabels}
-                    className="p-4 text-center hover:bg-gray-100"
-                >
-                    {showLabels ? "Hide Labels" : "Show Labels"}
-                </button>
-                
+
+                <div>
+                    {
+                        !showLabels ? <div className='flex items-center justify-between border-b border-[#E7E7E7] ps-[60px] pe-3 pt-3  pb-[14px] '>
+                            <button
+                                onClick={toggleLabels}
+                                className=" text-center hover:bg-gray-100  flex items-center gap-1 "
+                            >
+                                <span><PanelsTopLeft style={{ height: "34px", width: "24px", color: "#414141" }} /> </span>  <span>  {showLabels ? <ChevronRight style={{ height: "16px", width: "16px", color: "#929292" }} /> : <ChevronDown style={{ height: "16px", width: "16px", color: "#929292" }} />} </span>
+                            </button>
+
+                            <div className='flex items-center gap-2 cursor-pointer ' onClick={() => router.push("/new-chat")}>
+                                <GradientMessageCirclePlus />
+                                <p className='text-sm text-[#606060] font-normal '>New Chat</p>
+                            </div>
+                        </div> :
+                            <div className='flex flex-col items-center justify-center gap-2'>
+                                <button
+                                    onClick={toggleLabels}
+                                    className="px-4 pt-2 text-center hover:bg-gray-100  flex items-center gap-1 "
+                                >
+                                    <span><PanelsTopLeft style={{ height: "34px", width: "24px", color: "#414141" }} /> </span>  <span>  {showLabels ? <ChevronRight style={{ height: "16px", width: "16px", color: "#929292" }} /> : <ChevronDown style={{ height: "16px", width: "16px", color: "#929292" }} />} </span>
+                                </button>
+
+                                <div className='flex items-center justify-center gap-2 w-full  hover:bg-gray-100 py-[14px] '>
+                                    <button className='   text-center    ' onClick={() => router.push("/new-chat")}>
+                                        <GradientMessageCirclePlus />
+
+                                    </button>
+                                </div>
+
+                            </div>
+                    }
+                </div>
+
+
                 {/* Menu items */}
                 <div className="flex-1">
                     {menuItems.map((item) => (
                         <Link href={item.key} key={item.key}>
-                            <div className={`flex items-center gap-2 p-2 rounded-md border-b border-[#E7E7E7] ps-[60px] py-[14px] hover:bg-gray-100 ${pathname === item.key ? 'bg-blue-50' : ''}`}>
+                            <div className={`flex items-center  ${showLabels ? " justify-center  " : "border-b border-[#E7E7E7] ps-[60px] "}  gap-2 p-2 rounded-md   py-[14px] hover:bg-gray-100 ${pathname === item.key ? 'bg-blue-50' : ''}`}>
                                 <span>{item.icon}</span>
                                 {!showLabels && (
                                     <span className='text-sm text-[#606060] font-normal'>

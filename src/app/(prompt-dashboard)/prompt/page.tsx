@@ -1,9 +1,10 @@
+import PromptHome from '@/components/ui/prompt-dashboard/prompt-home/PromptHome';
 import React from 'react';
 
 const promptMainPage = () => {
     return (
         <div>
-            this is prompt main page
+          <PromptHome/>
         </div>
     );
 };
