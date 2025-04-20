@@ -20,4 +20,31 @@
 .custom-upload-dragger{
   background: white !important; 
 
+} 
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #dfdfdf00;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+
+  /* background: #6b5ecc34;  */
+  background: #f6f6f6;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #f6f6f6;
+}   
+
+saved-page-btn.ant-btn-variant-outlined{
+  background-color: #a70c0c !important;
 }

@@ -18,14 +18,14 @@ const Sidebar = ({ showLabels, setShowLabels }: { showLabels: boolean, setShowLa
     const menuItems = [
 
         {
-            key: "/my-documents",
-            icon: <FilePlus2 style={{ height: "34px", width: "24px", color: pathname === "/my-documents" ? "#07AFF8" : "#606060" }} />,
-            label: "My Documents"
+            key: "/my-projects",
+            icon: <FilePlus2 style={{ height: "34px", width: "24px", color: pathname === "/my-projects" ? "#07AFF8" : "#606060" }} />,
+            label: "My Projects"
         },
         {
-            key: "/saved-templates",
-            icon: <Bookmark style={{ height: "34px", width: "24px", color: pathname === "/saved-templates" ? "#07AFF8" : "#606060" }} />,
-            label: "Saved Templates"
+            key: "/saved-projects",
+            icon: <Bookmark style={{ height: "34px", width: "24px", color: pathname === "/saved-projects" ? "#07AFF8" : "#606060" }} />,
+            label: "Saved Projects"
         },
         {
             key: "/chat-history",
@@ -81,7 +81,7 @@ const Sidebar = ({ showLabels, setShowLabels }: { showLabels: boolean, setShowLa
                             <div className={`flex items-center  ${showLabels ? " justify-center  " : "border-b border-[#E7E7E7] ps-[60px] "}  gap-2 p-2 rounded-md   py-[14px] hover:bg-gray-100 ${pathname === item.key ? 'bg-blue-50' : ''}`}>
                                 <span>{item.icon}</span>
                                 {!showLabels && (
-                                    <span className='text-sm text-[#606060] font-normal'>
+                                    <span className={`text-sm  font-normal ${pathname === item.key ? "text-[#07AFF8]" : "text-[#606060]"}`}>
                                         {item.label}
                                     </span>
                                 )}

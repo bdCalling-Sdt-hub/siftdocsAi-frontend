@@ -1,9 +1,15 @@
+"use client";
+import { Viewer, Worker } from '@react-pdf-viewer/core';
+
+// Import the styles
+import '@react-pdf-viewer/core/lib/styles/index.css';
+
 
 const data = [
     {
         id: 1,
         question: "shortly report on it ",
-        answer: <div className="text-[#606060] text-[12px] space-y-2 tracking-wide"> 
+        answer: <div className="text-[#606060] text-[12px] space-y-2 tracking-wide">
 
             <p> Free Chat with AI – Users can directly chat with the AI without uploading any documents or creating a project. This is a general-purpose AI interaction. </p>
             <p>  Chat with a Single Document – Users can upload one document and engage with the AI to extract insights, summarize, or ask specific questions related to that document. </p>
@@ -23,50 +29,74 @@ const data = [
             <p> Notion AI – Example of integrating AI with structured document-based workflows</p>
         </div>
     }
-] 
+]
 const ChatWithDocument = () => {
     return (
-  
-        <div> 
-           {
-               data.map((item ) => (
-                   <div key={item.id} className="w-full flex flex-col gap-y-10">  
-                    <div className=" flex items-center justify-end"> 
-                       <div className=" bg-[#FBFBFB] text-[#606060] text-[12px] px-6 py-4 w-[630px] tracking-wide rounded-b-3xl rounded-tl-3xl rounded-tr-none "> 
-                         <div className="flex items-center gap-2"> 
-                          <div> 
-                          <img src="/logoIcon.png" alt="" style={{ width: "42px", height: "42px"}} />
-                          </div> 
-                          <div className="flex flex-col gap-0"> 
-                            <p className="text-[#414141] text-[14px]"> SiftDocs.pdf </p> 
-                            <p className="text-[#B6B6B6] text-[12px]">PDF</p>
-                          </div>
-                         </div>
 
-                      <p className=" text-[#606060] text-[12px] mt-2">  {item.question} </p>  </div>
-                    </div> 
+        <div>
+            {
+                data.map((item) => (
+                    <div key={item.id} className="w-full flex flex-col gap-y-10">
+                        <div className=" flex items-center justify-end">
+                            <div className=" bg-[#FBFBFB] text-[#606060] text-[12px] px-6 py-4 w-[630px] tracking-wide rounded-b-3xl rounded-tl-3xl rounded-tr-none ">
+                                <div className="flex items-center gap-2">
+                                    <div>
+                                        <img src="/logoIcon.png" alt="" style={{ width: "42px", height: "42px" }} />
+                                    </div>
+                                    <div className="flex flex-col gap-0">
+                                        <p className="text-[#414141] text-[14px]"> SiftDocs.pdf </p>
+                                        <p className="text-[#B6B6B6] text-[12px]">PDF</p>
+                                    </div>
+                                </div>
 
-                    <div className=" flex items-center justify-start relative">   
-                       <div > 
-                       <div className="absolute -top-3 left-0">   <img src="/logoIcon.png" alt="" style={{ width: "17px", height: "19px"}} />  </div>  
- 
+                                <p className=" text-[#606060] text-[12px] mt-2">  {item.question} </p>  </div>
+                        </div>
 
- <div className="bg-[#F1F1F1] text-[#606060] text-[12px] px-6 py-4 w-full tracking-wide rounded-b-3xl rounded-tl-none rounded-tr-3xl flex items-center gap-4"> 
-    <div className="w-1/2"> <img src="/sample.png" alt=""  className=" " /> </div> 
+                        <div className=" flex items-center justify-start relative">
+                            <div >
+                                <div className="absolute -top-3 left-0">   <img src="/logoIcon.png" alt="" style={{ width: "17px", height: "19px" }} />  </div>
 
-    <div className="w-1/2"> {item.answer} </div>
- </div>
-                     
 
-                       </div>
-                     
+                                <div className="bg-[#F1F1F1] text-[#606060] text-[12px] px-6 py-4 w-full tracking-wide rounded-b-3xl rounded-tl-none rounded-tr-3xl flex lg:flex-row flex-col items-center gap-[60px]">
+                                    <div className="lg:w-1/2 w-full">
+                                        <div className='w-full'>
+                                            <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
+                                                <div
+                                                    style={{
+                                                        // border: '1px solid rgba(0, 0, 0, 0.3)', 
+                                                        height: '500px',
+                                                        width: '100%'
+                                                    }}
+                                                >
+                                                    <Viewer fileUrl="/example.pdf" 
+                                                     theme={{
+                                                        theme: 'auto'
+                                                    }}
+                                                        defaultScale={0.95}
+                                                        renderLoader={(percentages: number) => (
+                                                            <div style={{ width: '100%' }}>
+                                                                Loading... ({Math.round(percentages)}%)
+                                                            </div>
+                                                        )} />
+                                                </div>
+                                            </Worker>
+
+                                        </div>
+                                    </div>
+
+                                    <div className="lg:w-1/2 w-full pe-5"> {item.answer} </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
                     </div>
-
-                   </div> 
-               ))
-           }
+                ))
+            }
         </div>
- 
+
     );
 };
 
