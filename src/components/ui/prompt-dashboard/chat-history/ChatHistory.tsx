@@ -1,5 +1,5 @@
 'use client';
-import { ConfigProvider, DatePicker, Tabs, Input, Button, Table } from 'antd';
+import { ConfigProvider, DatePicker, Input, Button, Table } from 'antd';
 import { Download, Search } from 'lucide-react';
 import React, { useState } from 'react';
 import type { ColumnsType, TableProps } from 'antd/es/table';
@@ -50,35 +50,6 @@ const ChatHistory = () => {
     };
 
 
-    const items = [
-        {
-            key: "all",
-            label: (
-                <p className="text-[16px] font-normal ">All </p>
-            ),
-        },
-        {
-            key: "largeDataset",
-            label: (
-                <p className="text-[16px] font-normal ">Large Dataset File </p>
-            ),
-        },
-        {
-            key: "pre-filled",
-            label: (
-                <p className="text-[16px] font-normal ">Pre-filled Form</p>
-            ),
-        },
-        {
-            key: "blankTemplate",
-            label: (
-                <p className="text-[16px] font-normal ">Blank Template Form</p>
-            ),
-        },
-    ];
-
-
-
     return (
         <div>
 
@@ -113,27 +84,6 @@ const ChatHistory = () => {
             </div>
 
             <div>
-
-                <div>
-                    <ConfigProvider
-                        theme={{
-                            components: {
-                                Tabs: {
-                                    itemActiveColor: "#12A3E1",
-                                    itemSelectedColor: "#12A3E1",
-                                    inkBarColor: "#12A3E1",
-                                    itemHoverColor: "#12A3E1",
-                                    itemColor: "#929292",
-
-                                },
-                            },
-                        }}
-                    >
-
-                        <Tabs defaultActiveKey="services" items={items} />
-                    </ConfigProvider>
-                </div>
-
 
                 <ConfigProvider
                     theme={{

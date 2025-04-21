@@ -12,7 +12,7 @@ const Banner = () => {
     const router = useRouter();
     return (
         <div className=" min-h-[calc(100vh-80px)]   flex items-center justify-center w-full bg-no-repeat bg-center  bg-cover"
-        style={{ backgroundImage: `url('/banner.jpg')` }}
+        style={{ backgroundImage: `url('/banner.svg')` }}
         > 
           <div className=" container  flex items-center justify-center ">  
            <div className=" text-[#121212] flex flex-col items-center justify-center"> 

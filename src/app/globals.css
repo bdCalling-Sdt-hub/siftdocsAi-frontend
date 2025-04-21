@@ -45,6 +45,6 @@
   background: #f6f6f6;
 }   
 
-saved-page-btn.ant-btn-variant-outlined{
-  background-color: #a70c0c !important;
+.rpv-core__inner-page {
+  background-color: #f6f6f6 !important; 
 }

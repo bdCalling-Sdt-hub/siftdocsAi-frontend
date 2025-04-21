@@ -27,7 +27,7 @@ const LayoutClone = ({ children }: { children: React.ReactNode }) => {
                 {/* main container with header */} 
 
                 <div className={`  ${showLabels ? "w-[calc(100%-100px)]" : "w-[calc(100%-250px)]"} `}>
-                    <div className={ ` ${pathname === "/new-chat" ? "bg-[#f6f6f6]" : "bg-[#FBFBFB]"} p-4 h-[calc(100vh-80px)] border-s-8 border-t-8 border-[#F4F4F4] rounded-md shadow-md`}>
+                    <div className={ ` ${pathname === "/new-chat" ? "bg-[#f6f6f6]" : "bg-[#FBFBFB]"} px-4 pt-4 pb-0 h-[calc(100vh-80px)] border-s-8 border-t-8 border-[#F4F4F4] rounded-md shadow-md`}>
                     <ConfigProvider
                     theme={{
                         token: {
