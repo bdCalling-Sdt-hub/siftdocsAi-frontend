@@ -7,12 +7,14 @@ import PreFilledForm from './PreFilledForm/PreFilledForm';
 import BlankTemplateForm from './BlankTemplateForm/BlankTemplateForm';
 import { pageNavigationPlugin, RenderGoToPageProps } from '@react-pdf-viewer/page-navigation';
 import { zoomPlugin } from '@react-pdf-viewer/zoom';
+import FinalReport from './Final Report/FinalReport';
 
 
 const CreatePDF = () => {
     const searchParams = useSearchParams();
     const tabParam = searchParams.get("tab");
-    const [activeTab, setActiveTab] = useState(tabParam || "1");
+    const [activeTab, setActiveTab] = useState(tabParam || "1"); 
+    const [isFinalReport , setIsFinalReport] = useState(false)
     const pageNavigationPluginInstance = pageNavigationPlugin();
     const zoomPluginInstance = zoomPlugin();
     const { GoToNextPage, GoToPreviousPage } = pageNavigationPluginInstance;
@@ -29,7 +31,12 @@ const CreatePDF = () => {
     const tabs = [
         { id: "1", label: "Large Dataset File", component: <LargeDataset zoomPluginInstance={zoomPluginInstance} pageNavigationPluginInstance={pageNavigationPluginInstance} /> },
         { id: "2", label: "Pre-filled Form", component: <PreFilledForm  zoomPluginInstance={zoomPluginInstance} pageNavigationPluginInstance={pageNavigationPluginInstance} /> },
-        { id: "3", label: "Blank Template Form", component: <BlankTemplateForm  zoomPluginInstance={zoomPluginInstance} pageNavigationPluginInstance={pageNavigationPluginInstance} /> },
+        { id: "3", label: "Blank Template Form", component: <BlankTemplateForm  zoomPluginInstance={zoomPluginInstance} pageNavigationPluginInstance={pageNavigationPluginInstance} /> }, 
+        ...(isFinalReport ? [{
+          id: "4", 
+          label: "Final Report",
+          component: <FinalReport zoomPluginInstance={zoomPluginInstance} pageNavigationPluginInstance={pageNavigationPluginInstance} />
+        }] : [])
     ];
 
     return (
@@ -100,8 +107,14 @@ const CreatePDF = () => {
 } 
 
 {
-  activeTab === "3" && <div> <button  style={{ borderRadius:50 , height:48 , }} className=' text-white bg-primary px-7 '> Create Report </button></div>
-}
+  activeTab === "3" && <div> <button  style={{ borderRadius:50 , height:48 , }} className=' text-white bg-primary px-7 ' onClick={()=>setIsFinalReport(true)}> Create Report </button></div>
+}  
+
+{
+  activeTab === "4" && <div> <button  style={{ borderRadius:50 , height:48 , }} className=' text-white bg-primary px-7 ' onClick={()=>setIsFinalReport(true)}> Confirm </button></div>
+} 
+
+
 
 </div>
            
