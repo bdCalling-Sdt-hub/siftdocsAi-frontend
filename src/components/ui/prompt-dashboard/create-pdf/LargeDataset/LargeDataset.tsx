@@ -1,61 +1,98 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-"use client";
+'use client';
+
+import { useState } from 'react';
 import { Viewer, Worker } from '@react-pdf-viewer/core';
-
-// Import the styles
 import '@react-pdf-viewer/core/lib/styles/index.css';
-import '@react-pdf-viewer/page-navigation/lib/styles/index.css'; 
+import '@react-pdf-viewer/page-navigation/lib/styles/index.css';
 import '@react-pdf-viewer/zoom/lib/styles/index.css';
+import { Button, Input } from 'antd';
+import { ArrowUpOutlined } from '@ant-design/icons';
 
+const LargeDataset = ({
+    zoomPluginInstance,
+    pageNavigationPluginInstance,
+}: {
+    zoomPluginInstance: any;
+    pageNavigationPluginInstance: any;
+}) => {
+    const [message, setMessage] = useState('');
+    const [messages, setMessages] = useState<string[]>([]);
 
-const LargeDataset = ({ zoomPluginInstance, pageNavigationPluginInstance }: { zoomPluginInstance: any, pageNavigationPluginInstance: any}) => { 
+    const handleSend = () => {
+        if (message.trim()) {
+            setMessages((prev) => [...prev, message]);
+            setMessage('');
+        }
+    };
 
     return (
-        <div>
-
-            <div className=" grid grid-cols-3 ">
-
-                {/* left side   */}
-                <div className=" col-span-2 border-e-2 border-white ">
-                    <div className='w-full'>
-                        <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js" >
-                            <div
-                                style={{
-                                    // border: '1px solid rgba(0, 0, 0, 0.3)', 
-                                    height: '100%',
-                                    width: '100%' , 
-                                    
-                                }}  
-                                className="pdf-container"
-                            > 
-
-
-
-                                <Viewer fileUrl="/example.pdf"
-                                    theme={{
-                                        theme: 'auto'
-                                    }}
-                                    defaultScale={0.98}
-                                    renderLoader={(percentages: number) => (
-                                        <div style={{ width: '100%' }}>
-                                            Loading... ({Math.round(percentages)}%)
-                                        </div>
-                                    )} 
-                                    plugins={[pageNavigationPluginInstance, zoomPluginInstance]}
-                                    />
-                            </div>
-                        </Worker>
-
+        <div className="h-full w-full grid grid-cols-3 overflow-hidden">
+            {/* Left Side PDF Viewer */}
+            <div className="col-span-2 border-e-[12px] border-white overflow-y-auto">
+                <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
+                    <div className="h-full w-full">
+                        <Viewer
+                            fileUrl="/example.pdf"
+                            theme={{ theme: 'auto' }}
+                            defaultScale={0.98}
+                            renderLoader={(percentages: number) => (
+                                <div style={{ width: '100%' }}>
+                                    Loading... ({Math.round(percentages)}%)
+                                </div>
+                            )}
+                            plugins={[pageNavigationPluginInstance, zoomPluginInstance]}
+                        />
                     </div>
-                </div>
-
-                {/* right side   */}
-                <div className=" col-span-1">
-
-                </div>
-
+                </Worker>
             </div>
 
+            {/* Right Side Input and Chat Bubble */}
+            <div className="col-span-1 relative h-full ">
+                {/* Message bubble */}
+                <div className='overflow-y-auto'>
+                    {messages.length > 0 && (
+                        <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 w-[90%] flex flex-col gap-2 max-h-[87%] overflow-y-auto pr-2 pb-1">
+                            {messages.map((msg, index) => (
+                                <div
+                                    key={index}
+                                    className="self-end max-w-[75%] bg-[#EEF1F4] px-4 py-2 rounded-2xl shadow text-sm whitespace-pre-wrap break-words"
+                                >
+                                    {msg}
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </div>
+
+                {/* Input */}
+                <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-[90%]">
+                    <Input
+                        placeholder="Ask your need......"
+                        size="large"
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        onPressEnter={handleSend}
+                        className="rounded-full w-full h-12 transition-all"
+                        style={{
+                            height: '48px',
+                            borderRadius: '50px',
+                            border: '1px solid #E4E4E4',
+                            backgroundColor: '#fefefe',
+                            boxShadow: '0 0 10px rgba(0, 0, 0, 0.09)',
+                        }}
+                        suffix={
+                            <Button
+                                type="primary"
+                                shape="circle"
+                                icon={<ArrowUpOutlined />}
+                                className="h-8 w-8 flex items-center justify-center"
+                                onClick={handleSend}
+                            />
+                        }
+                    />
+                </div>
+            </div>
         </div>
     );
 };

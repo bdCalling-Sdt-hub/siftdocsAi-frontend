@@ -1,89 +1,113 @@
-"use client"
+"use client";
 
 import { useSearchParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import LargeDataset from './LargeDataset/LargeDataset';
 import PreFilledForm from './PreFilledForm/PreFilledForm';
 import BlankTemplateForm from './BlankTemplateForm/BlankTemplateForm';
-import { pageNavigationPlugin } from '@react-pdf-viewer/page-navigation'; 
-import { zoomPlugin } from '@react-pdf-viewer/zoom'; 
+import { pageNavigationPlugin, RenderGoToPageProps } from '@react-pdf-viewer/page-navigation';
+import { zoomPlugin } from '@react-pdf-viewer/zoom';
 
 
-const CreatePDF = () => { 
-  const searchParams = useSearchParams();
-  const tabParam = searchParams.get("tab");
-  const [activeTab, setActiveTab] = useState(tabParam || "1");   
-  const pageNavigationPluginInstance = pageNavigationPlugin();  
-  const zoomPluginInstance = zoomPlugin();
-  const { GoToNextPageButton, GoToPreviousPageButton } = pageNavigationPluginInstance;
-const { ZoomInButton, ZoomOutButton } = zoomPluginInstance;
+const CreatePDF = () => {
+    const searchParams = useSearchParams();
+    const tabParam = searchParams.get("tab");
+    const [activeTab, setActiveTab] = useState(tabParam || "1");
+    const pageNavigationPluginInstance = pageNavigationPlugin();
+    const zoomPluginInstance = zoomPlugin();
+    const { GoToNextPage, GoToPreviousPage } = pageNavigationPluginInstance;
+    const { ZoomInButton, ZoomOutButton } = zoomPluginInstance; 
 
-  
-  useEffect(() => {
-    if (tabParam) {
-      setActiveTab(tabParam);
-    }
-  }, [tabParam]); 
+    console.log(activeTab);
 
+    useEffect(() => {
+        if (tabParam) {
+            setActiveTab(tabParam);
+        }
+    }, [tabParam]);
 
-  const tabs = [
-    { id: "1", label: "Large Dataset File", component: <LargeDataset zoomPluginInstance={zoomPluginInstance} pageNavigationPluginInstance={pageNavigationPluginInstance} /> },
-    { id: "2", label: "Pre-filled Form", component: <PreFilledForm /> },
-    { id: "3", label: "Blank Template Form", component: <BlankTemplateForm /> },
-  ];
- 
+    const tabs = [
+        { id: "1", label: "Large Dataset File", component: <LargeDataset zoomPluginInstance={zoomPluginInstance} pageNavigationPluginInstance={pageNavigationPluginInstance} /> },
+        { id: "2", label: "Pre-filled Form", component: <PreFilledForm  zoomPluginInstance={zoomPluginInstance} pageNavigationPluginInstance={pageNavigationPluginInstance} /> },
+        { id: "3", label: "Blank Template Form", component: <BlankTemplateForm  zoomPluginInstance={zoomPluginInstance} pageNavigationPluginInstance={pageNavigationPluginInstance} /> },
+    ];
 
+    return (
+        <div className="w-full h-[100vh-115px] flex flex-col">
+            {/* Navbar */}
+            <div className="bg-white h-[48px] flex items-center justify-center shadow">
+                <div className="flex items-center gap-4">
+                    <GoToPreviousPage>
+                        {(props: RenderGoToPageProps) => (
+                            <button
+                                disabled={props.isDisabled}
+                                onClick={props.onClick}
+                                className="text-sm px-2 py-1 border rounded disabled:opacity-50"
+                            >
+                                Previous
+                            </button>
+                        )}
+                    </GoToPreviousPage>
 
-  return (
-    <div className=' w-full h-[calc(100vh-120px)] relative '>
-      <div className=' bg-white h-[40px] w-full flex items-center justify-center pb-2 '>
-<div className="flex items-center gap-4  rounded">
-<GoToPreviousPageButton
-  render={(props) => <button onClick={props.onClick}>⬅️ Prev</button>}
-/>
+                    <GoToNextPage>
+                        {(props: RenderGoToPageProps) => (
+                            <button
+                                disabled={props.isDisabled}
+                                onClick={props.onClick}
+                                className="text-sm px-2 py-1 border rounded disabled:opacity-50"
+                            >
+                                Next
+                            </button>
+                        )}
+                    </GoToNextPage>
 
-<GoToNextPageButton
-  render={(props) => <button onClick={props.onClick}>Next ➡️</button>}
-/>
+                    <ZoomOutButton render={(props) => (
+                        <button onClick={props.onClick} className="text-sm px-2 py-1 border rounded">➖</button>
+                    )} />
 
-<ZoomOutButton
-  render={(props) => <button onClick={props.onClick}>➖ Zoom Out</button>}
-/>
+                    <ZoomInButton render={(props) => (
+                        <button onClick={props.onClick} className="text-sm px-2 py-1 border rounded">➕</button>
+                    )} />
+                </div>
+            </div>
 
-<ZoomInButton
-  render={(props) => <button onClick={props.onClick}>➕ Zoom In</button>}
-/>
+            {/* Body */}
+            <div className="flex-1 overflow-auto bg-[#f6f6f6] ">
+                <div className="h-[calc(100vh-225px)] overflow-hidden">
+                    {tabs.find((tab) => tab.id === activeTab)?.component}
+                </div>
+            </div>
 
-            </div> 
-      </div>
+            {/* Footer */}
+            <div className="h-[72px] bg-white flex items-center justify-between border-t">
+                <div className="flex gap-4">
+                    {tabs.map((tab) => (
+                        <button
+                            key={tab.id}
+                            onClick={() => setActiveTab(tab.id)}
+                            className={`px-4 py-2 rounded-full text-[16px] font-medium h-[48px] ${activeTab === tab.id
+                                ? "border border-primary text-primary shadow"
+                                : "bg-[#F1F1F1] text-[#929292] hover:border-primary hover:border hover:bg-white hover:text-primary"
+                                }`}
+                        >
+                            {tab.label}
+                        </button>
+                    ))}
+                </div> 
+<div> 
+{
+  activeTab === "2" && <div> <button  style={{ borderRadius:50 , height:48 , }} className=' text-white bg-primary px-7 '> Save </button></div>
+} 
 
+{
+  activeTab === "3" && <div> <button  style={{ borderRadius:50 , height:48 , }} className=' text-white bg-primary px-7 '> Create Report </button></div>
+}
 
-      <div  className=' h-[calc(100vh-192px)] overflow-y-scroll  bg-[#f6f6f6]'>
-      <div> 
-      {tabs.find((tab) => tab.id === activeTab)?.component} 
-      </div>
-      </div> 
-
-
-      <div className=' h-[72px] w-full bg-white pt-3 absolute -bottom-2 flex items-center'> 
-      <div className="flex flex-row gap-4">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`text-left px-4 py-2 rounded-full font-medium h-[48px] text-[16px] ${
-                  activeTab === tab.id
-                    ? " border border-primary text-primary  shadow"
-                    : "bg-[#F1F1F1] text-[#929292] hover:border-primary hover:border hover:bg-white hover:text-primary"
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div> 
-      </div>
-    </div>
-  );
+</div>
+           
+            </div>
+        </div>
+    );
 };
 
 export default CreatePDF;
