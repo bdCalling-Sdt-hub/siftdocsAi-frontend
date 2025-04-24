@@ -39,7 +39,7 @@ const PreFilledForm = ({
         <div className="h-full w-full grid lg:grid-cols-3 grid-cols-1 overflow-hidden">
             {/* Left Side PDF Viewer */}
             <div className="col-span-2 border-e-[12px] border-white overflow-y-auto">
-                <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
+                <Worker workerUrl="https://unpkg.com/pdfjs-dist@5.1.91/build/pdf.worker.min.js">
                     <div className="h-full w-full">
                         <Viewer
                             fileUrl="/form.pdf"

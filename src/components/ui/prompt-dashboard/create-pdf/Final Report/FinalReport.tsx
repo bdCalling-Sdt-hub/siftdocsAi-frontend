@@ -11,7 +11,7 @@ const FinalReport = ({zoomPluginInstance , pageNavigationPluginInstance}:{zoomPl
         <div className="h-full w-full grid grid-cols-3 overflow-hidden">
         {/* Left Side PDF Viewer */}
         <div className="col-span-3  overflow-y-auto">
-            <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
+            <Worker workerUrl="https://unpkg.com/pdfjs-dist@5.1.91/build/pdf.worker.min.js">
                 <div className="h-full w-full">
                     <Viewer
                         fileUrl="/blank_template.pdf"

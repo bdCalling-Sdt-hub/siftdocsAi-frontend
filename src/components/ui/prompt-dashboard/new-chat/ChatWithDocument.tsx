@@ -62,7 +62,7 @@ const ChatWithDocument = () => {
                                 <div className="bg-[#F1F1F1] text-[#606060] text-[12px] px-6 py-4 w-full tracking-wide rounded-b-3xl rounded-tl-none rounded-tr-3xl flex lg:flex-row flex-col items-center gap-[60px]">
                                     <div className="lg:w-1/2 w-full">
                                         <div className='w-full'>
-                                            <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
+                                            <Worker workerUrl="https://unpkg.com/pdfjs-dist@5.1.91/build/pdf.worker.min.js">
                                                 <div
                                                     style={{
                                                         // border: '1px solid rgba(0, 0, 0, 0.3)', 

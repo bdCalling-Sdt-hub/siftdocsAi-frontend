@@ -27,7 +27,7 @@ const BlankTemplateForm = ({zoomPluginInstance , pageNavigationPluginInstance}:{
                 </div>
             </Worker>
         </div>
-    </div>
+    </div>.
     );
 };
 
