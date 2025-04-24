@@ -1,10 +1,12 @@
 import CreatePDF from '@/components/ui/prompt-dashboard/create-pdf/CreatePDF';
-import React from 'react';
+import React, { Suspense } from 'react';
 
 const CreatePDFPage = () => {
     return (
         <div>
-           <CreatePDF/> 
+            <Suspense fallback={<div>Loading...</div>}>
+                <CreatePDF />
+            </Suspense>
         </div>
     );
 };
