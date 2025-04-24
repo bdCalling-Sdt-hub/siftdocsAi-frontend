@@ -1,12 +1,16 @@
-import CreatePDF from '@/components/ui/prompt-dashboard/create-pdf/CreatePDF';
-import React, { Suspense } from 'react';
+
+import dynamic from 'next/dynamic';
+import React from 'react';
+
+const CreatePDF = dynamic(() => import('@/components/ui/prompt-dashboard/create-pdf/CreatePDF'), {
+    loading: () => <div>Loading...</div>,
+    ssr: false,
+});
 
 const CreatePDFPage = () => {
     return (
         <div>
-            <Suspense fallback={<div>Loading...</div>}>
-                <CreatePDF />
-            </Suspense>
+            <CreatePDF />
         </div>
     );
 };
