@@ -21,11 +21,11 @@ const VerifyOtp = ({ openResetPassword }: { openResetPassword: () => void }) => 
     <div className="w-full ">
 
       <div className=" mb-6 flex flex-col items-center justify-center">
-        <div className="flex items-center justify-center mb-6">
-          <img src="/logo.png" alt="Logo" className="h-[32px] w-auto" />
+        <div className="flex items-center justify-center lg:mb-6 mb-3">
+          <img src="/logo.png" alt="Logo" className="lg:h-[32px] h-[24px] w-auto" />
         </div>
-        <h1 className="text-[25px] font-semibold mb-2 text-[#333333] text-center ">Verification code</h1>
-        <div className="  w-[70%]  "> <p className="text-[#5C5C5C] text-center "> We sent a reset link to contact@dscode...com
+        <h1 className="lg:text-[25px] text-[22px] font-semibold mb-2 text-[#333333] text-center ">Verification code</h1>
+        <div className="  lg:w-[70%] w-full  "> <p className="text-[#5C5C5C] text-center "> We sent a reset link to contact@dscode...com
           enter 5 digit code that is mentioned in the email. </p> </div>
       </div>
 

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 import React from 'react';
-import { Viewer, Worker } from '@react-pdf-viewer/core';
+import { SpecialZoomLevel, Viewer, Worker } from '@react-pdf-viewer/core';
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/page-navigation/lib/styles/index.css';
 import '@react-pdf-viewer/zoom/lib/styles/index.css';
@@ -16,7 +16,7 @@ const FinalReport = ({zoomPluginInstance , pageNavigationPluginInstance}:{zoomPl
                     <Viewer
                         fileUrl="/blank_template.pdf"
                         theme={{ theme: 'auto' }}
-                        defaultScale={0.98}
+                        defaultScale={SpecialZoomLevel.PageWidth}  
                         renderLoader={(percentages: number) => (
                             <div style={{ width: '100%' }}>
                                 Loading... ({Math.round(percentages)}%)

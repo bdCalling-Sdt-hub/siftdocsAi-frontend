@@ -73,7 +73,7 @@ const openResetPassword = () => {
 
                 {/* Navigation Menu */}
                 <div
-                    className={`z-50 text-[16px] transition-all duration-300 shadow-lg lg:shadow-none p-5 lg:p-0 absolute top-20 left-0 w-full bg-white lg:bg-transparent lg:relative lg:top-0 lg:left-auto lg:w-auto lg:flex lg:flex-row flex-col lg:items-center space-y-4 lg:space-y-0 lg:space-x-6 lg:rounded-full lg:px-6 ${isMenuOpen ? "block" : "hidden"
+                    className={`z-50 text-[16px] transition-all duration-300 shadow-lg lg:shadow-none p-5 lg:p-0 absolute top-14 left-0 w-full h-[300px] bg-white lg:h-auto lg:bg-transparent lg:relative lg:top-0 lg:left-auto lg:w-auto lg:flex lg:flex-row flex-col lg:items-center space-y-6 lg:space-y-0 lg:space-x-6 lg:rounded-full lg:px-6 ${isMenuOpen ? "block" : "hidden"
                         }`}
                 >
                     {navOptions.map((option, index) => (
@@ -81,7 +81,7 @@ const openResetPassword = () => {
                             <Link
                                 key={index}
                                 href={option.path}
-                                className={`nav-link flex flex-col items-center justify-center px-3 rounded-lg text-[#929292] ${pathname === option.path
+                                className={`nav-link flex flex-col lg:items-center lg:justify-center px-3 lg:py-0 py-1.5 rounded-lg text-[#929292] ${pathname === option.path
                                     ? "font-[400]"
                                     : "hover:text-[#929292]"
                                     }`}
@@ -134,7 +134,7 @@ const openResetPassword = () => {
                 }}
                 centered
             > 
-            <div className=" h-[587px] px-[60px]  flex items-center justify-center " >  
+            <div className=" h-[587px] lg:px-[60px] px-0  flex items-center justify-center " >  
 
                 {modalView === 'login' ? (
                     <Login onForgotPassword={openForgotPassword} openRegister={openRegister} setIsModalOpen={setIsModalOpen} />

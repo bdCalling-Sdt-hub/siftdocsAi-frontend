@@ -15,9 +15,9 @@ export default function MyProjects() {
     console.log(setDisplayData);
 
     return (
-        <div className=" pe-5 ">
-            <div className='flex items-center justify-between mb-[34px]'>
-                <p className='text-[20px] text-[#606060] font-normal  '> My Projects</p>
+        <div className=" lg:pe-5 pe-2 ">
+            <div className='flex lg:flex-row flex-col lg:items-center gap-2 justify-between mb-[34px]'>
+                <p className='text-[20px] text-[#606060] font-normal lg:ps-0 ps-2  '> My Projects</p>
 
                 <div className='flex items-center gap-4'>
 
@@ -50,13 +50,16 @@ export default function MyProjects() {
                             <p className='text-[14px] text-[#B6B6B6] font-normal'>{group.date}</p>
                         </Divider>
 
-                        <Row gutter={[24, 24]}>
-                            {group.reports.map((report) => (
-                                <Col xs={24} md={12} lg={8} key={report.id}>
-                                    <ReportCard report={report} />
-                                </Col>
-                            ))}
-                        </Row>
+                        <div className='lg:ps-2'>
+                            <Row gutter={[24, 24]}>
+                                {group.reports.map((report) => (
+                                    <Col xs={24} md={12} lg={8} key={report.id}>
+                                        <ReportCard report={report} />
+                                    </Col>
+                                ))}
+                            </Row>
+                        </div>
+
                     </div>
                 ))
             )}

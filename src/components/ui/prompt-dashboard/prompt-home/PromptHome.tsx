@@ -5,11 +5,14 @@ import { Button, Input, ConfigProvider, Dropdown } from 'antd';
 import { PlusOutlined, ArrowUpOutlined } from '@ant-design/icons';
 import UploadOptions from './UploadOptions';
 import DocumentUploadModal from './DocumentUploadModal';
+import { useRouter } from 'next/navigation';
 
 const PromptHome = () => {
-    const [isOpenFile, setIsOpenFile] = useState(false);
+    const [isOpenFile, setIsOpenFile] = useState(false); 
+    const router = useRouter(); 
+
     return (
-        <div className='  w-full h-[calc(100vh-120px)] flex items-center justify-center '>
+        <div className='  w-full lg:h-[calc(100vh-120px)]  h-[calc(100vh-105px)] flex items-center justify-center '>
             <div>
              <ConfigProvider
                     theme={{
@@ -20,11 +23,11 @@ const PromptHome = () => {
                     }}
                 >
                     <div className="w-full  mx-auto flex flex-col items-center">
-                        <div className="text-center mb-10">
-                            <h1 className="text-2xl  font-medium mb-6 text-[#414141]">
+                        <div className="text-center lg:mb-10 mb-7">
+                            <h1 className="lg:text-2xl text-[20px]  font-medium lg:mb-6 mb-4 text-[#414141]">
                                 Extract data from any document type
                             </h1>
-                            <p className="text-sm text-[#606060]">Choose the document to get started</p>
+                            <p className="text-sm  text-[#606060]">Choose the document to get started</p>
                         </div>
 
                         <div className="w-full flex flex-col sm:flex-row justify-center items-center gap-4 mb-10 z-20">
@@ -76,7 +79,8 @@ const PromptHome = () => {
                                         type="primary"
                                         shape="circle"
                                         icon={<ArrowUpOutlined />}
-                                        className="h-10 w-10 flex items-center justify-center"
+                                        className="h-10 w-10 flex items-center justify-center" 
+                                        onClick={()=>router.push("/new-chat")}
                                     />
                                 }
                             />

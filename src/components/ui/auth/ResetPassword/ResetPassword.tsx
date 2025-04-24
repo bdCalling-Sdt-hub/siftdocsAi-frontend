@@ -12,12 +12,11 @@ const ResetPassword = ({setIsModalOpen}:{setIsModalOpen:(open:boolean)=>void}) =
         <div>
 
         <div className=" mb-6  flex flex-col items-center justify-center "> 
-          <div className="flex items-center justify-center mb-6">
-            <img src="/logo.png" alt="Logo" className="h-[32px] w-auto" />
+          <div className="flex items-center justify-center lg:mb-6 mb-3">
+            <img src="/logo.png" alt="Logo" className="lg:h-[32px] h-[24px] w-auto" />
           </div>
-          <h1 className="text-[25px] font-semibold text-[#333333] mb-2 ">Set a new password </h1> 
-          <div className="  w-[70%]  "> <p className="text-[#5C5C5C] text-center "> We sent a reset link to contact@dscode...com
-          enter 5 digit code that is mentioned in the email. </p> </div> 
+          <h1 className="lg:text-[25px] text-[22px] font-semibold text-[#333333] mb-2 ">Set a new password </h1> 
+          <div className="  lg:w-[70%] w-full "> <p className="text-[#5C5C5C] text-center lg:text-base text-xs "> Your new password must be different from previous passwords. </p> </div> 
         </div>
 
         <Form

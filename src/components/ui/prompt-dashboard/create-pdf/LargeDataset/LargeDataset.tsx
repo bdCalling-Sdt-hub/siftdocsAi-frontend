@@ -2,7 +2,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Viewer, Worker } from '@react-pdf-viewer/core';
+import { SpecialZoomLevel, Viewer, Worker } from '@react-pdf-viewer/core';
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/page-navigation/lib/styles/index.css';
 import '@react-pdf-viewer/zoom/lib/styles/index.css';
@@ -27,15 +27,15 @@ const LargeDataset = ({
     };
 
     return (
-        <div className="h-full w-full grid grid-cols-3 overflow-hidden">
+        <div className="h-full w-full grid lg:grid-cols-3 grid-cols-1 overflow-hidden">
             {/* Left Side PDF Viewer */}
-            <div className="col-span-2 border-e-[12px] border-white overflow-y-auto">
+            <div className="lg:col-span-2 border-e-[12px] border-white overflow-y-auto">
                 <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
                     <div className="h-full w-full">
                         <Viewer
                             fileUrl="/example.pdf"
                             theme={{ theme: 'auto' }}
-                            defaultScale={0.98}
+                           defaultScale={SpecialZoomLevel.PageWidth}  
                             renderLoader={(percentages: number) => (
                                 <div style={{ width: '100%' }}>
                                     Loading... ({Math.round(percentages)}%)
@@ -48,7 +48,7 @@ const LargeDataset = ({
             </div>
 
             {/* Right Side Input and Chat Bubble */}
-            <div className="col-span-1 relative h-full ">
+            <div className="col-span-1 relative lg:h-full h-[450px] lg:mt-0 mt-8 ">
                 {/* Message bubble */}
                 <div className='overflow-y-auto'>
                     {messages.length > 0 && (

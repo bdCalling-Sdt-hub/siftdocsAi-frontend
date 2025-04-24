@@ -7,7 +7,7 @@ import { Paperclip } from 'lucide-react';
 
 const NewChat = () => {
     return (
-        <div className='lg:w-[85%] lg:ps-[100px] h-[calc(100vh-120px)] flex flex-col'>
+        <div className='lg:w-[85%] w-full lg:ps-[100px] lg:h-[calc(100vh-120px)]  h-[calc(100vh-105px)] flex flex-col'>
         {/* Scrollable content */}
         <div className='flex-1 overflow-y-auto px-4'>
             <div className='flex flex-col items-center justify-center gap-4 py-4'>

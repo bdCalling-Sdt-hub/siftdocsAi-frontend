@@ -50,11 +50,11 @@ const DocumentUploadModal: React.FC<DocumentUploadModalProps> = ({
       closeIcon={false}
       centered
     >
-      <div className="px-6 py-8">
-        <h2 className="text-2xl font-medium text-[#000000] mb-6">Create your document type</h2>
+      <div className="lg:px-6 px-1 py-8">
+        <h2 className="lg:text-2xl text-xl font-medium text-[#000000] mb-6">Create your document type</h2>
         
         <div className="mb-6">
-          <label htmlFor="document-name" className="block text-[16px] text-[#414141] mb-2">
+          <label htmlFor="document-name" className="block lg:text-[16px] text-[14px] text-[#414141] mb-2">
             Name your document
           </label>
           <Input
@@ -78,7 +78,7 @@ const DocumentUploadModal: React.FC<DocumentUploadModalProps> = ({
   }}
 > 
         <Dragger {...uploadProps} className="custom-upload-dragger ">
-          <div className="p-10">
+          <div className="lg:p-10 p-1">
             <p className="text-sm mb-2 font-normal text-[#414141]">
               Drag and drop files here
             </p>
@@ -95,10 +95,10 @@ const DocumentUploadModal: React.FC<DocumentUploadModalProps> = ({
                 boxShadow: "0 0 10px rgba(0, 0, 0, 0.09)",
               }}
           >
-           <span className='text-primary text-[16px]'> Click here to upload</span> 
+           <span className='text-primary lg:text-[16px] text-sm'> Click here to upload</span> 
           </button> 
 
-          <p className="text-[12px] text-center text-[#929292] tracking-wide mt-6">
+          <p className="lg:text-[12px] text-[12px] text-center text-[#929292] lg:tracking-wide mt-6">
           Supported formats: PDF,Case file, Medical records
         </p>
         <p className="text-[12px] text-center text-[#929292] tracking-wide">

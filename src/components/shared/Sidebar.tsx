@@ -1,11 +1,11 @@
 "use client"
 
 import Link from 'next/link';
-import { Bookmark, ChevronDown, ChevronRight, FilePlus2, MessageCircleReply, PanelsTopLeft } from 'lucide-react';
+import { Bookmark, ChevronDown, ChevronRight, FilePlus2, MessageCircleReply, PanelsTopLeft, X } from 'lucide-react';
 import { usePathname, useRouter } from 'next/navigation';
 import GradientMessageCirclePlus from './GradientMessageCirclePlus';
 
-const Sidebar = ({ showLabels, setShowLabels }: { showLabels: boolean, setShowLabels: (showLabels: boolean) => void }) => {
+const Sidebar = ({ showLabels, setShowLabels, setMobileVisible }: { showLabels: boolean, setShowLabels: (showLabels: boolean) => void, setMobileVisible?: (visible: boolean) => void; }) => {
     const pathname = usePathname();
     const router = useRouter();
 
@@ -36,7 +36,16 @@ const Sidebar = ({ showLabels, setShowLabels }: { showLabels: boolean, setShowLa
 
     return (
         <div className="h-full ">
-            <div className="flex flex-col h-full ">
+            <div className='flex justify-end'>
+                <button
+                    onClick={() => setMobileVisible?.(false)}
+                    className="lg:hidden p-2 text-red-600"
+                >
+                    <X />
+                </button>
+            </div>
+
+            <div className="flex flex-col h-full lg:mt-0 mt-5 ">
                 {/* Toggle button at the top */}
 
                 <div>
@@ -44,12 +53,12 @@ const Sidebar = ({ showLabels, setShowLabels }: { showLabels: boolean, setShowLa
                         !showLabels ? <div className='flex items-center justify-between border-b border-[#E7E7E7] ps-[60px] pe-3 pt-3  pb-[14px] '>
                             <button
                                 onClick={toggleLabels}
-                                className=" text-center hover:bg-gray-100  flex items-center gap-1 "
+                                className=" text-center hover:bg-gray-100  lg:flex hidden items-center gap-1 "
                             >
                                 <span><PanelsTopLeft style={{ height: "34px", width: "24px", color: "#414141" }} /> </span>  <span>  {showLabels ? <ChevronRight style={{ height: "16px", width: "16px", color: "#929292" }} /> : <ChevronDown style={{ height: "16px", width: "16px", color: "#929292" }} />} </span>
                             </button>
 
-                            <div className='flex items-center gap-2 cursor-pointer ' onClick={() => router.push("/new-chat")}>
+                            <div className='flex items-center gap-2 cursor-pointer ' onClick={() => router.push("/prompt")}>
                                 <GradientMessageCirclePlus />
                                 <p className='text-sm text-[#606060] font-normal '>New Chat</p>
                             </div>
@@ -63,7 +72,7 @@ const Sidebar = ({ showLabels, setShowLabels }: { showLabels: boolean, setShowLa
                                 </button>
 
                                 <div className='flex items-center justify-center gap-2 w-full  hover:bg-gray-100 py-[14px] '>
-                                    <button className='   text-center    ' onClick={() => router.push("/new-chat")}>
+                                    <button className='   text-center    ' onClick={() => router.push("/prompt")}>
                                         <GradientMessageCirclePlus />
 
                                     </button>

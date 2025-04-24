@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
-import { Viewer, Worker } from '@react-pdf-viewer/core';
+import { SpecialZoomLevel, Viewer, Worker } from '@react-pdf-viewer/core';
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/page-navigation/lib/styles/index.css';
 import '@react-pdf-viewer/zoom/lib/styles/index.css';
@@ -36,7 +36,7 @@ const PreFilledForm = ({
 
 
     return (
-        <div className="h-full w-full grid grid-cols-3 overflow-hidden">
+        <div className="h-full w-full grid lg:grid-cols-3 grid-cols-1 overflow-hidden">
             {/* Left Side PDF Viewer */}
             <div className="col-span-2 border-e-[12px] border-white overflow-y-auto">
                 <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
@@ -44,7 +44,7 @@ const PreFilledForm = ({
                         <Viewer
                             fileUrl="/form.pdf"
                             theme={{ theme: 'auto' }}
-                            defaultScale={0.98}
+                            defaultScale={SpecialZoomLevel.PageWidth}  
                             renderLoader={(percentages: number) => (
                                 <div style={{ width: '100%' }}>
                                     Loading... ({Math.round(percentages)}%)
