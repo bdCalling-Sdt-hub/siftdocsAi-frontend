@@ -2,19 +2,24 @@
 const nextConfig = {
   images: {
     remotePatterns: [
-      {
-        protocol: "http",
-        hostname: "**",
-      },
-      {
-        protocol: "https",
-        hostname: "**",
-      },
+      { protocol: 'http', hostname: '**' },
+      { protocol: 'https', hostname: '**' },
     ],
   },
-  webpack: (config) => {
-    config.resolve.alias['pdfjs-dist/build/pdf'] = 'pdfjs-dist/legacy/build/pdf';
-    config.resolve.alias['pdfjs-dist/build/pdf.worker.entry'] = 'pdfjs-dist/legacy/build/pdf.worker.entry';
+
+  webpack(config, { nextRuntime  }) { 
+
+    if (nextRuntime === "nodejs") {
+      config.resolve.alias.canvas = false;
+    }
+
+    // Proper alias to use legacy build of pdfjs-dist (NO canvas required)
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      'pdfjs-dist': 'pdfjs-dist/legacy/build/pdf',
+      'pdfjs-dist/build/pdf.worker.entry': 'pdfjs-dist/legacy/build/pdf.worker.entry',
+    };
+
     return config;
   },
 };
